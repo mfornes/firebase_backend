@@ -17,9 +17,9 @@ const PORT = process.env.PORT || 3000
 app.post('/send', (req, res) => {
 
   admin.messaging().send(req.body.message).then((response) => {
-    res.status(200).send("Notification sent successfully", response)
+    res.status(200).send(`Notification sent successfully: ${ response }`)    
   }).catch((error) => {
-    res.status(500).send("Error sending message:", error)
+    res.status(error.status).send(`Error sending message: ${ error }`)
   });
 
 })
