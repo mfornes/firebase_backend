@@ -1,9 +1,10 @@
-import admin from 'firebase-admin'
-import dotenv from 'dotenv'
-dotenv.config()
+const admin = require('firebase-admin')
+require('dotenv').config()
+
+const GOOGLE_CREDENTIALS = JSON.parse(process.env.GOOGLE_CREDENTIALS)
 
 admin.initializeApp({
-  credential: admin.credential.cert(process.env.SERVICE_ACCOUNT),
+  credential: admin.credential.cert(GOOGLE_CREDENTIALS),
 })
 
 module.exports.admin = admin
